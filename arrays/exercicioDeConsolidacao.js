@@ -18,7 +18,7 @@ tarefas.push({desc: 'limpar a mesa', prioridade: 2, status: 'pendente'});
 console.log(tarefas);
 
 //remove tarefas concluidas
-const tarefasPendentes = tarefas.filter((task) => task.status === 'pendente');
+const tarefasPendentes = tarefas.filter(({status}) => status === 'pendente');
 console.log(tarefasPendentes);
 
 //mostra tarefas concluidas
@@ -30,10 +30,23 @@ const encontraTarefa = tarefas.find((task) => task.desc === 'ler');
 console.log(encontraTarefa);
 
 //Verificar conclusão de todas as tarefas
-const checkAllTasks = tarefas.every((task) => {
-    if(task.status === 'concluida'){
-        console.log(`Meus parabens! todas as tarefas foram concluidas!!`);
-    }else{
-        console.log(`Calma la! Nem todas as tarefas foram concluidas.`);
-    }
-});
+const checkAllTasks = tarefas.every((task) => task.status === 'ler');
+
+//marcar todas tarefas concluidas
+const doneTasks = tarefas.map((task) => ({...task, status: 'concluida'}));
+console.log(doneTasks);
+
+
+//tarefas ordenadas por prioridade
+const sortedTasks = tarefas.sort((prevTask, currentTask) => prevTask.prioridade - currentTask.prioridade);
+console.log(sortedTasks);
+
+//contador das tarefas pendentes
+const pendingTasksQtd = tarefas.reduce((prev, next) => {
+    if(next.status === 'pendente') return prev + 1;
+    return prev
+}, 0);
+
+console.log(pendingTasksQtd);
+
+//
