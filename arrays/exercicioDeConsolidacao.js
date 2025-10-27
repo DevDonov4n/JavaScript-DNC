@@ -16,11 +16,24 @@ let tarefas = [
 tarefas.push({desc: 'limpar a mesa', prioridade: 2, status: 'pendente'});
 
 console.log(tarefas);
+
 //remove tarefas concluidas
 const tarefasPendentes = tarefas.filter((task) => task.status === 'pendente');
 console.log(tarefasPendentes);
 
-//marcar tarefas concluidas
-
+//mostra tarefas concluidas
 const tarefasConcluidas = tarefas.filter((task) => task.status === 'concluida');
 console.log(tarefasConcluidas);
+
+//encontra a tarefa ler;
+const encontraTarefa = tarefas.find((task) => task.desc === 'ler');
+console.log(encontraTarefa);
+
+//Verificar conclusão de todas as tarefas
+const checkAllTasks = tarefas.every((task) => {
+    if(task.status === 'concluida'){
+        console.log(`Meus parabens! todas as tarefas foram concluidas!!`);
+    }else{
+        console.log(`Calma la! Nem todas as tarefas foram concluidas.`);
+    }
+});
