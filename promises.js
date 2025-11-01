@@ -37,24 +37,29 @@ Se os dados forem encontrados a Promise deve ser resolvida se nao deve ser rejei
 */
 
 let tasks = [
-    {name: 'ler'},
     {name: 'estudar'},
     {name: 'academia'}
 ];
 
-let findTask = new Promise((finded, miss) => {
+let findTask = new Promise((resolve, reject) => {
     console.log('Procurando a tarefa...');
     setTimeout (()=> {
-        tasks.find((task) => {
-            if(task.name === 'ler')
-            finded('Tarefa Encontrada! Começe a executa-la!')
-            else miss('Tarefa NAO encontrada, essa foi por pouco')
-        });
+        const taskFound = tasks.find(task => task.name === 'ler');
+
+        if(taskFound){
+            resolve('Tarefa Encontrada! Começe a executa-la!');
+        }else{
+            reject('Tarefa NAO encontrada, essa foi por pouco');
+        } 
+            
+        
         
     },3000);
     
 });
-
+tasks.push({name: 'ler'});
+//se deixarmos esse techo acima comentado ele retorna a mensagem de erro
 findTask
     .then((mensagem) => console.log(mensagem))
     .catch((erro) => console.log(erro));
+
