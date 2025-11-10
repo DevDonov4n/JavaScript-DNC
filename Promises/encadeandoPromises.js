@@ -1,6 +1,6 @@
 console.log('Criar um pedido online em uma loja');
 
-let promessaPedidoConfirmado = new Promise((resolve, reject) => {
+let confirmarPedido = async () => new Promise((resolve, reject) => {
     console.log('iniciando pedido');
     
     setTimeout(() => {
@@ -11,11 +11,11 @@ let promessaPedidoConfirmado = new Promise((resolve, reject) => {
         } else {
             reject('Pedido não pode ser confirmado, tente novamente');
         }
-    }, 3000);
+    }, 5000);
 });
 
 
-let promessaPagamento = (pedido) => new Promise((resolve, reject) => {
+let processoPagamento = async (pedido) => new Promise((resolve, reject) => {
     setTimeout(()=>{
         let pagamento = true;
         if(pagamento) {
@@ -27,13 +27,7 @@ let promessaPagamento = (pedido) => new Promise((resolve, reject) => {
     }, 3000);
 });
 
-const promesaResolvida = promessaPedidoConfirmado
-    .then((pedido) => {
-        console.log({pedido});
-        return promessaPagamento(pedido)
-    })
-    .then((pagamento) => {
-        console.log({pagamento});
-        console.log('Sucesso ao realizar pedido! Aguardando envio')
-    });
+const pedidoConfirmado = await confirmarPedido();
+const pagamentoAprovado = await processoPagamento(pedidoConfirmado);
+console.log('Tudo deu certo com seu pedido');
 
