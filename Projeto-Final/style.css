@@ -20,12 +20,12 @@ body{
 
 .tasks-box{
     background-color: #fff;
-    color: blueviolet;
+    color: #000;
     max-width: 100%;
     max-height: 100%;
-    width: 50%;
+    width: 40%;
     height: 50%;
-    padding: 3vh;
+    padding: 2vh;
     margin: 10%;
 
     justify-items: center;
@@ -34,4 +34,49 @@ body{
     
     border-radius: 10px;
 
+}
+
+.toDo-list-section{
+    margin: 0.8rem 0 1.6rem;
+    min-height: 5rem;
+
+    & > ul{
+        padding-inline-start: 0rem;
+        height: 23rem;
+        overflow: auto;
+    }
+
+    & > ul > li {
+        list-style-type: none;
+        padding: .8rem 1.6rem;
+        font-size: 1.6rem;
+        background-color: #efefef;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: .8rem;
+    }
+
+    & > ul > li:last-child{
+        margin-bottom: 0;
+    }
+    
+    & > ul > li > button{
+        width: 2.4rem;
+        height: 2.4rem;
+        background-color: crimson;
+        color: #fff;
+        border: none;
+        border-radius: .4rem;
+        cursor: pointer;
+
+        &:hover{
+            background-color: rgb(240, 35, 76);
+        }
+    }
+    
+}
+
+#toDo-title{
+    background-color: #6cffd0;
+    
 }

@@ -18,6 +18,7 @@ const getCheckBoxInputs = ({id, desc}) => {
     label.htmlFor = checkBoxId;
 
     wrapper.className = "checkbox-label-container";
+    
     wrapper.appendChild(checkBox);
     wrapper.appendChild(label)
 
@@ -30,9 +31,11 @@ window.onload = function(){
         
         const list = document.getElementById('toDo-list-section');
         const toDo = document.createElement('li');
+        //const button = document.createElement('button')
 
         toDo.textContent = tasks.desc;
         toDo.appendChild(checkBox);
+        //toDo.appendChild(button)
         list.appendChild(toDo);
     })
 }
