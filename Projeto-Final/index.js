@@ -1,8 +1,5 @@
 let tasks = [
-    {id: 1, desc: 'estudar', checked: false},
-    {id: 2, desc: 'ir na academia', checked: false},
-    {id: 3, desc: 'beber agua', checked: true},
-    {id: 4, desc: 'ler', checked: false},
+    {id: undefined, desc: 'Tarefa exemplar', checked: true},
 ];
 
 

@@ -22,8 +22,12 @@ li {
     list-style-type: none;
 }
 
+#toDo-title{
+    color: #8f49e7;
+}
+
 .tasks-box{
-    background-color: #fff;
+    background-color: #6cffd0;
     color: #000;
     max-width: 100%;
     max-height: 100%;
@@ -55,15 +59,24 @@ li {
         list-style-type: none;
         padding: .8rem 1.6rem;
         font-size: 1.6rem;
-        background-color: #efefef;
+        background-color: #fff;
         display: flex;
         justify-content: space-between;
         margin-bottom: .8rem;
         width: 90%;
+        border-radius: 4px;
+        transition: 0.4s;
     }
 
     & > ul > li:last-child{
         margin-bottom: 0;
+    }
+
+    & > ul > li:hover{
+        cursor:pointer;
+        box-shadow: 0 8px #8f49e7;
+        transform: translateY(-4px);
+        transition-duration: 0.4s;
     }
     
     & > ul > li > button{
@@ -122,7 +135,7 @@ li {
     padding-left: .8rem;
 
     &:focus{
-        border: 1px solid #5eb7f6;
+        border: 2px solid #8f49e7;
     }
 
     
