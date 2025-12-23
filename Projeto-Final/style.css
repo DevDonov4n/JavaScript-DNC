@@ -58,6 +58,24 @@ li {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 32px 0px;
 }
 
+#remove-done-tasks{
+    width: 100%;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 10px;
+    transition: 0.4s;
+
+
+}
+
+ #remove-done-tasks:hover {
+    cursor: pointer;
+    background-color: rgba(108, 92, 231, 0.3);
+    box-shadow: 0 8px #8f49e7;
+    transform: translateY(-4px);
+    transition-duration: 0.4s;
+  }
+
 .tasks-box {
   margin: 0.8rem 0 1.6rem;
   min-height: 5rem;
