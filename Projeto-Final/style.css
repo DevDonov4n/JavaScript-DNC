@@ -32,28 +32,33 @@ li {
 
 .tasks-title {
   background-color: #2d3436;
-  width: 105%;
+
+  width: 100%;
 
   padding: 0.2em;
+  text-align: center;
 
   border-radius: 10px 10px 0px 0px;
+
+
 }
 
 .tasks-box {
   background-color: #fff;
   color: #000;
-  max-width: 100%;
+  max-width: 520px;;
   max-height: 100%;
-  width: 40%;
+  width: 100%;
   height: 50%;
   padding: 2vh;
-  margin: 10%;
+  margin: 3rem auto;
   padding-top: 0;
 
   justify-items: center;
   justify-self: center;
 
   border-radius: 10px;
+  overflow: hidden;
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 32px 0px;
 }
@@ -70,8 +75,9 @@ li {
 
  #remove-done-tasks:hover {
     cursor: pointer;
-    background-color: rgba(108, 92, 231, 0.3);
-    box-shadow: 0 8px #8f49e7;
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 32px 0px;
     transform: translateY(-4px);
     transition-duration: 0.4s;
   }
@@ -108,7 +114,7 @@ li {
   & > ul > li:hover {
     cursor: pointer;
     background-color: rgba(108, 92, 231, 0.3);
-    box-shadow: 0 8px #8f49e7;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 20px 0px;
     transform: translateY(-4px);
     transition-duration: 0.4s;
   }
@@ -188,5 +194,90 @@ li {
     opacity: 0.7;
     transform: translateY(-4px);
     transition-duration: 0.4s;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  header {
+    text-align: center;
+    padding: 2vh 1rem;
+  }
+
+  .tasks-box {
+    width: 92%;
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .tasks-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  .tasks-box > ul {
+    height: auto;
+    max-height: 60vh;
+  }
+
+  .tasks-box > ul > li {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+
+  .checkbox-label-container {
+    justify-content: flex-start;
+  }
+
+  #create-todo-form {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .input-desc {
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+  }
+
+  .add-task-btn {
+    width: 100%;
+    height: 3.2rem;
+    font-size: 1.8rem;
+  }
+
+  #remove-done-tasks {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .tasks-box {
+    width: 70%;
+    margin: 2rem auto;
+  }
+
+  .tasks-box > ul {
+    max-height: 50vh;
+  }
+
+  .tasks-box > ul > li {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1025px) {
+
+  .tasks-box {
+    max-width: 520px;
+    margin: 3rem auto;
+  }
+
+  .tasks-box > ul {
+    max-height: 23rem;
   }
 }
