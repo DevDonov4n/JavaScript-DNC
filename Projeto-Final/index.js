@@ -225,15 +225,21 @@ const getNewTaskData = (event) => {
     return { desc, id, checked: false };
 };
 
+const getCreatedTaskInfo = (event) => new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(getNewTaskData(event))
+    }, 2000)
+})
+
 /**
  * Handler do submit do formulário.
  * Cria a tarefa no estado (LocalStorage) e no DOM.
  * @param {Event} event
  */
-const createTask = (event) => {
+const createTask = async (event) => {
     event.preventDefault();
-
-    const newTaskData = getNewTaskData(event);
+    document.getElementById('save-task').setAttribute('disabled', true);
+    const newTaskData =  await getCreatedTaskInfo(event);
 
     // Cria os elementos visuais
     const checkBox = getCheckBoxInputs(newTaskData);
@@ -243,7 +249,7 @@ const createTask = (event) => {
     const tasks = getTasksFromLocalStorage();
     const updatedTasks = [...tasks, newTaskData];
     setTasksInLocalStorage(updatedTasks);
-
+    document.getElementById('save-task').removeAttribute('disabled');
     // Limpa o formulário
     event.target.reset();
 };
