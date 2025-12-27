@@ -225,34 +225,74 @@ const getNewTaskData = (event) => {
     return { desc, id, checked: false };
 };
 
-const getCreatedTaskInfo = (event) => new Promise((resolve) => {
-    setTimeout(() => {
-        resolve(getNewTaskData(event))
-    }, 2000)
-})
+/**
+ * Simula a criação e obtenção dos dados de uma nova tarefa de forma assíncrona.
+ * 
+ * Essa função encapsula a chamada de `getNewTaskData` dentro de uma Promise,
+ * adicionando um delay artificial (setTimeout) para simular:
+ * - uma requisição a uma API
+ * - ou um processamento assíncrono mais pesado
+ *
+ * @param {Event} event - Evento de submit do formulário
+ * @returns {Promise<Object>} Promise que resolve com os dados da nova tarefa
+ */
+const getCreatedTaskInfo = (event) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            // Extrai e retorna os dados da nova tarefa a partir do evento
+            resolve(getNewTaskData(event));
+        }, 1000);
+    });
+};
 
 /**
- * Handler do submit do formulário.
- * Cria a tarefa no estado (LocalStorage) e no DOM.
- * @param {Event} event
+ * Handler do evento de submit do formulário de criação de tarefas.
+ * 
+ * Responsabilidades desta função:
+ * 1. Impedir o comportamento padrão do formulário
+ * 2. Bloquear o botão de envio para evitar múltiplos submits
+ * 3. Criar a nova tarefa (estado + DOM)
+ * 4. Persistir a tarefa no LocalStorage
+ * 5. Restaurar o estado da interface
+ *
+ * @param {Event} event - Evento de submit disparado pelo formulário
  */
 const createTask = async (event) => {
+    // Evita o reload da página ao submeter o formulário
     event.preventDefault();
-    document.getElementById('save-task').setAttribute('disabled', true);
-    const newTaskData =  await getCreatedTaskInfo(event);
 
-    // Cria os elementos visuais
+    // Desabilita o botão de salvar para evitar cliques repetidos
+    const saveButton = document.getElementById('save-task');
+    saveButton.setAttribute('disabled', true);
+
+    /**
+     * Aguarda a criação dos dados da nova tarefa.
+     * O await garante que o código abaixo só execute
+     * após a Promise ser resolvida.
+     */
+    const newTaskData = await getCreatedTaskInfo(event);
+
+    // Cria os elementos visuais da tarefa
     const checkBox = getCheckBoxInputs(newTaskData);
     createTaskListItem(newTaskData, checkBox);
 
-    // Atualiza o estado
+    /**
+     * Atualiza o estado da aplicação:
+     * - recupera as tarefas existentes do LocalStorage
+     * - adiciona a nova tarefa
+     * - persiste novamente no LocalStorage
+     */
     const tasks = getTasksFromLocalStorage();
     const updatedTasks = [...tasks, newTaskData];
     setTasksInLocalStorage(updatedTasks);
-    document.getElementById('save-task').removeAttribute('disabled');
-    // Limpa o formulário
+
+    // Reabilita o botão de salvar após a conclusão do processo
+    saveButton.removeAttribute('disabled');
+
+    // Limpa os campos do formulário para a próxima entrada
     event.target.reset();
 };
+
 
 /**
  * --------------------------------
