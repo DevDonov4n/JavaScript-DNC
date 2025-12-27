@@ -41,6 +41,24 @@ const setTasksInLocalStorage = (tasks) => {
     window.localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
+const renderTasksProgressData = (tasks) => {
+    let tasksProgress;
+    const tasksProgressDOM = document.getElementById('tasks-progress');
+
+    if (tasksProgressDOM) tasksProgress = tasksProgressDOM;
+    else {
+        const newTasksProgressDOM = document.createElement('div');
+        newTasksProgressDOM.id = 'tasks-progress';
+        document.getElementById('todo-footer').appendChild(newTasksProgressDOM);
+        tasksProgress = newTasksProgressDOM;
+    }
+
+    const doneTasks = tasks.filter(({ checked }) => checked).length
+    const totalTasks = tasks.length;
+    tasksProgress.textContent = `${doneTasks}/${totalTasks} concluídas`
+}
+
+
 /**
  * Recupera as tarefas do LocalStorage.
  * Caso não exista nada salvo, retorna um array vazio.
@@ -103,6 +121,7 @@ const removeDoneTaks = () => {
     // Mantém apenas as tarefas não concluídas
     const updatedTasks = tasks.filter(task => !task.checked);
     setTasksInLocalStorage(updatedTasks);
+    renderTasksProgressData(updatedTasks);
 
     // Remove os elementos <li> correspondentes do DOM
     idToRemove.forEach(id => {
@@ -125,11 +144,14 @@ const removeTask = (taskId) => {
 
     // Atualiza o LocalStorage
     setTasksInLocalStorage(updatedTasks);
+    renderTasksProgressData(updatedTasks);
 
     // Remove o elemento visual <li> da lista
     document
         .getElementById('toDo-list-section')
         .removeChild(document.getElementById(taskId));
+
+
 };
 
 /**
@@ -285,6 +307,7 @@ const createTask = async (event) => {
     const tasks = getTasksFromLocalStorage();
     const updatedTasks = [...tasks, newTaskData];
     setTasksInLocalStorage(updatedTasks);
+    renderTasksProgressData(updatedTasks);
 
     // Reabilita o botão de salvar após a conclusão do processo
     saveButton.removeAttribute('disabled');
@@ -315,4 +338,6 @@ window.onload = function () {
         const checkBox = getCheckBoxInputs(task);
         createTaskListItem(task, checkBox);
     });
+
+    renderTasksProgressData(tasks);
 };
