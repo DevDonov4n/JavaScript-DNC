@@ -29,14 +29,14 @@ Cada tarefa segue o seguinte formato:
   checked: boolean   // Status de conclusão
 }
 As tarefas são armazenadas como um array serializado em JSON no LocalStorage.
-
+```
 
 
 🗂️ Arquitetura do Projeto
 O projeto está organizado de forma funcional, separando responsabilidades por blocos lógicos:
 
 scss
-Copiar código
+
 ├── Estado da Aplicação
 ├── Persistência (LocalStorage)
 ├── Manipulação do DOM
